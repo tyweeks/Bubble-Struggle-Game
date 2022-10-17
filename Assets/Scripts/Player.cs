@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,5 +18,13 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + Vector2.right * movement * Time.fixedDeltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ball")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
